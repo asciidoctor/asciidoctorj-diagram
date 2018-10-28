@@ -1,0 +1,27 @@
+dependencies {
+
+  testCompile "org.asciidoctor:asciidoctorj:$asciidoctorJVersion"
+  //testCompile "org.asciidoctor:asciidoctorj-arquillian-extension:$asciidoctorJVersion"
+
+  gems("rubygems:asciidoctor-diagram:$asciidoctorDiagramGemVersion") {
+    // Exclude gems provided by AsciidoctorJ core
+    exclude module: 'asciidoctor'
+    exclude module: 'thread_safe'
+  }
+}
+
+def gemFiles = fileTree(jruby.gemInstallDir) {
+  include 'specifications/*.gemspec'
+  include 'gems/*/lib/**'
+  include "gems/asciidoctor-diagram-${asciidoctorDiagramGemVersion}/data/**"
+}
+
+jrubyPrepare {
+  doLast {
+    println "Copy from $gemFiles into $preparedGems"
+    copy { // bundles the gems inside this artifact
+      from gemFiles
+      into preparedGems
+    }
+  }
+}
