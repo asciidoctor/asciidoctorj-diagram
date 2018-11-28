@@ -1,7 +1,7 @@
 dependencies {
 
+  testCompile "org.jsoup:jsoup:$jsoupVersion"
   testCompile "org.asciidoctor:asciidoctorj:$asciidoctorJVersion"
-  //testCompile "org.asciidoctor:asciidoctorj-arquillian-extension:$asciidoctorJVersion"
 
   gems("rubygems:asciidoctor-diagram:$asciidoctorDiagramGemVersion") {
     // Exclude gems provided by AsciidoctorJ core

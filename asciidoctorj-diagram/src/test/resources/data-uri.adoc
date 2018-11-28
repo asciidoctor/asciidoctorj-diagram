@@ -1,0 +1,9 @@
+= Test
+:data-uri:
+
+== Test
+
+[plantuml,data-uri-test,png]
+----
+A --> B
+----

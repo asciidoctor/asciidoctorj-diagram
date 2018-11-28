@@ -9,8 +9,8 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7"
-        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.0.0"
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4"
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.4.10"
     }
 }
 
@@ -34,14 +34,15 @@ ext {
   commonsioVersion = '2.4'
   guavaVersion = '18.0'
   hamcrestVersion = '1.3'
-  jrubyVersion = '9.2.0.0'
+  jrubyVersion = '9.2.4.0'
   junitVersion = '4.12'
+  jsoupVersion = '1.11.2'
   saxonVersion = '9.5.1-6'
   xmlMatchersVersion = '1.0-RC1'
   pdfboxVersion = '1.8.10'
 
   // gem versions
-  asciidoctorJVersion = project.hasProperty('asciidoctorJVersion') ? project.asciidoctorJVersion : '1.5.7'
+  asciidoctorJVersion = project.hasProperty('asciidoctorJVersion') ? project.asciidoctorJVersion : '1.5.8'
   asciidoctorDiagramGemVersion = project.hasProperty('asciidoctorDiagramGemVersion') ? project.asciidoctorDiagramGemVersion : project(':asciidoctorj-diagram').version.replace('-', '.')
 
 }
