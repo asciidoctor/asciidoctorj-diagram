@@ -16,7 +16,7 @@ buildscript {
 
 // modern plugins config
 plugins {
-  id 'com.github.jruby-gradle.base' version '1.4.0'
+  id 'com.github.jruby-gradle.base' version '2.0.0'
 }
 
 // TIP use -PpublishRelease=true to active release behavior regardless of the version
@@ -131,20 +131,26 @@ configure(subprojects.findAll {it.name != 'itest'}) {
   apply plugin: 'com.github.jruby-gradle.base'
 
   repositories {
-    maven {
-      name 'rubygems-release'
-      url 'http://rubygems-proxy.torquebox.org/releases'
-    }
-    maven {
-      name 'rubygems-prerelease'
-      url 'http://rubygems-proxy.torquebox.org/prereleases'
-    }
+    ruby.gems()
+  }
+
+  ext {
+    // path to use for the prepared jruby gems
+    preparedGems = new File("$buildDir/preparedGems")
   }
 
   if (JavaVersion.current().isJava8Compatible()) {
     javadoc {
       // Oracle JDK8 likes to fail the build over spoiled HTML
       options.addStringOption('Xdoclint:none', '-quiet')
+    }
+  }
+
+  sourceSets {
+    main {
+      //let's register an output folder on the main SourceSet:
+      output.dir(preparedGems, builtBy: 'jrubyPrepare')
+      //it is now a part of the 'main' classpath and will be a part of the jar
     }
   }
 }
@@ -169,10 +175,7 @@ configure(subprojects.findAll { it.name != 'itest'}) {
   }
 
   jruby {
-    defaultRepositories = false
-    defaultVersion = jrubyVersion
-    execVersion = jrubyVersion
-    // TODO I'd like to be able to customize the name of the gemInstallDir
+    jrubyVersion = jrubyVersion
   }
 
   ext {
