@@ -11,6 +11,7 @@ ifdef::awestruct[:toclevels: 1]
 :source-language: java
 :language: {source-language}
 ifdef::env-github[:badges:]
+ifdef::env-idea[:badges:]
 // Aliases:
 :dagger: &#8224;
 // URIs:
@@ -37,9 +38,8 @@ ifndef::awestruct[:uri-docs: http://asciidoctor.org/docs]
 
 {uri-repo}[AsciidoctorJ Diagram] is a convenient repackaging of Asciidoctor Diagram for use with {uri-asciidoctorj}[AsciidoctorJ], which brings the Asciidoctor ecosystem to the JVM.
 
-// TODO: Fix URLs for badges once CI is configured
 ifdef::badges[]
-image:https://img.shields.io/travis/asciidoctor/asciidoctorj/master.svg[Build Status (Travis CI), link=https://travis-ci.org/asciidoctor/asciidoctorj-diagram]
+image:https://github.com/asciidoctor/asciidoctorj-diagram/workflows/CI/badge.svg?branch=master[Build Status (GitHub Workflow CI), link=https://github.com/asciidoctor/asciidoctorj-diagram/actions?query=workflow%3ACI+branch%3Amaster]
 endif::[]
 
 ifdef::awestruct,env-browser[]
