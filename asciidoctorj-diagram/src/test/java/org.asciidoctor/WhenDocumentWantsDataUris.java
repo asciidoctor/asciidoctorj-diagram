@@ -6,6 +6,9 @@ import org.jsoup.select.Elements;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 
 import static org.asciidoctor.OptionsBuilder.options;
 import static org.hamcrest.CoreMatchers.is;
@@ -18,16 +21,17 @@ public class WhenDocumentWantsDataUris {
     private Asciidoctor asciidoctor = Asciidoctor.Factory.create();
 
     @Test
-    public void png_should_be_rendered_for_diagram() {
+    public void png_should_be_rendered_for_diagram() throws IOException {
+        File buildDir = new File("build/resources/test");
 
-        File inputFile = new File("build/resources/test/data-uri.adoc");
+        File inputFile = new File(buildDir, "data-uri.adoc");
+        File outputFile = new File(buildDir, "data-uri.html");
         File outputFile1 = new File(inputFile.getParentFile(), "data-uri-test.png");
         File outputFile2 = new File(inputFile.getParentFile(), ".asciidoctor/diagram/data-uri-test.png.cache");
         asciidoctor.requireLibrary("asciidoctor-diagram");
-        final String html = asciidoctor.convertFile(inputFile,
+        asciidoctor.convertFile(inputFile,
             options().backend("html5")
-                .toFile(false)
-                .toDir(new File("build"))
+                .toFile(outputFile)
                 .safe(SafeMode.SERVER)
                 .get());
         assertThat(outputFile1.exists(), is(true));
@@ -35,6 +39,7 @@ public class WhenDocumentWantsDataUris {
         outputFile1.delete();
         outputFile2.delete();
 
+        String html = new String(Files.readAllBytes(outputFile.toPath()), StandardCharsets.UTF_8);
         final Document doc = Jsoup.parse(html);
         System.out.println(doc);
         Elements images = doc.getElementsByTag("img");

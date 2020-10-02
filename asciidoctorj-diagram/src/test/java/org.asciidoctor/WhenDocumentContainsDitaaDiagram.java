@@ -15,16 +15,16 @@ public class WhenDocumentContainsDitaaDiagram {
     @Test
     public void png_should_be_rendered_for_diagram() {
 
-        File inputFile = new File("build/resources/test/sample.adoc");
-        File outputDir = new File("build");
-        File outputFile1 = new File(outputDir, "asciidoctor-diagram-process.png");
-        File outputFile2 = new File(outputDir, ".asciidoctor/diagram/asciidoctor-diagram-process.png.cache");
+        File buildDir = new File("build/resources/test");
+
+        File inputFile = new File(buildDir, "sample.adoc");
+        File outputFile1 = new File(inputFile.getParentFile(), "asciidoctor-diagram-process.png");
+        File outputFile2 = new File(inputFile.getParentFile(), ".asciidoctor/diagram/asciidoctor-diagram-process.png.cache");
         asciidoctor.requireLibrary("asciidoctor-diagram");
         asciidoctor.convertFile(inputFile,
             options()
                 .backend("html5")
-                .toDir(outputDir)
-                .safe(SafeMode.UNSAFE)
+                .toFile(new File(buildDir, "sample.html"))
                 .get());
         assertThat(outputFile1.exists(), is(true));
         assertThat(outputFile2.exists(), is(true));
