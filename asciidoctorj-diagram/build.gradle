@@ -3,10 +3,14 @@ dependencies {
   testCompile "org.jsoup:jsoup:$jsoupVersion"
   testCompile "org.asciidoctor:asciidoctorj:$asciidoctorJVersion"
 
+  implementation project(':asciidoctorj-diagram-plantuml')
+  implementation project(':asciidoctorj-diagram-ditaamini')
   gems("rubygems:asciidoctor-diagram:$asciidoctorDiagramGemVersion") {
     // Exclude gems provided by AsciidoctorJ core
     exclude module: 'asciidoctor'
     exclude module: 'thread_safe'
+    exclude module: 'asciidoctor-diagram-plantuml'
+    exclude module: 'asciidoctor-diagram-ditaamini'
   }
 }
 

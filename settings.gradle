@@ -2,6 +2,8 @@ rootProject.name = 'asciidoctorj-diagram'
 
 include \
   'asciidoctorj-diagram',
+  'asciidoctorj-diagram-plantuml',
+  'asciidoctorj-diagram-ditaamini',
   'itest'
 
 

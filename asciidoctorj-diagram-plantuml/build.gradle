@@ -1,0 +1,23 @@
+dependencies {
+  gems("rubygems:asciidoctor-diagram-plantuml:${project.version}")
+}
+
+def gemFiles = fileTree("${project.buildDir}/.gems") {
+  include 'specifications/*.gemspec'
+  include 'gems/*/lib/**'
+}
+
+jrubyPrepare {
+  doLast {
+    println "Copy from $gemFiles into $preparedGems"
+    copy { // bundles the gems inside this artifact
+      from gemFiles
+      into preparedGems
+    }
+  }
+}
+
+ext.publicationName = "mavenAsciidoctorJDiagramPlantuml"
+
+apply from: rootProject.file('gradle/publish.gradle')
+apply from: rootProject.file('gradle/signing.gradle')
