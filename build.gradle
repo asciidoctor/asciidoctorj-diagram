@@ -58,7 +58,7 @@ ext {
   pdfboxVersion = '1.8.10'
 
   // gem versions
-  asciidoctorJVersion = project.hasProperty('asciidoctorJVersion') ? project.asciidoctorJVersion : '1.5.8'
+  asciidoctorJVersion = project.hasProperty('asciidoctorJVersion') ? project.asciidoctorJVersion : '2.4.3'
   asciidoctorDiagramGemVersion = project.hasProperty('asciidoctorDiagramGemVersion') ? project.asciidoctorDiagramGemVersion : project(':asciidoctorj-diagram').version.replace('-', '.')
 
 }
