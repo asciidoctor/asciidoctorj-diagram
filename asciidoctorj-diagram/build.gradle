@@ -1,7 +1,7 @@
 dependencies {
 
-  testCompile "org.jsoup:jsoup:$jsoupVersion"
-  testCompile "org.asciidoctor:asciidoctorj:$asciidoctorJVersion"
+  testImplementation "org.jsoup:jsoup:$jsoupVersion"
+  testImplementation "org.asciidoctor:asciidoctorj:$asciidoctorJVersion"
 
   implementation project(':asciidoctorj-diagram-plantuml')
   implementation project(':asciidoctorj-diagram-ditaamini')
