@@ -1,8 +1,8 @@
 dependencies {
 
-    testCompile ("org.asciidoctor:asciidoctorj:$asciidoctorJVersion")
+    testImplementation ("org.asciidoctor:asciidoctorj:$asciidoctorJVersion")
 
-    testRuntime project(':asciidoctorj-diagram')
+    testImplementation project(':asciidoctorj-diagram')
 }
 
 jar.enabled = false
