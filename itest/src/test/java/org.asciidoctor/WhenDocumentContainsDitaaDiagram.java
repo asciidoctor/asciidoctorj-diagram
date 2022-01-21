@@ -1,12 +1,10 @@
 package org.asciidoctor;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
-import static org.asciidoctor.OptionsBuilder.options;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class WhenDocumentContainsDitaaDiagram {
 
@@ -15,14 +13,16 @@ public class WhenDocumentContainsDitaaDiagram {
     @Test
     public void png_should_be_rendered_for_diagram() {
 
-        File inputFile = new File("src/test/resources/sample.adoc");
-        File outputFile1 = new File(inputFile.getParentFile(), "asciidoctor-diagram-process.png");
-        File outputFile2 = new File(inputFile.getParentFile(), ".asciidoctor/diagram/asciidoctor-diagram-process.png.cache");
+        File sourceDir = new File("build/resources/test");
+
+        File sourceDocument = new File(sourceDir, "sample.adoc");
+        File expectedDiagram = new File(sourceDir, "asciidoctor-diagram-process.png");
+        File expectedDiagramCache = new File(sourceDir, ".asciidoctor/diagram/asciidoctor-diagram-process.png.cache");
+
         asciidoctor.requireLibrary("asciidoctor-diagram");
-        asciidoctor.convertFile(inputFile, options().backend("html5").get());
-        assertThat(outputFile1.exists(), is(true));
-        assertThat(outputFile2.exists(), is(true));
-        outputFile1.delete();
-        outputFile2.delete();
+        asciidoctor.convertFile(sourceDocument, Options.builder().backend("html5").build());
+
+        assertThat(expectedDiagram).isNotEmpty();
+        assertThat(expectedDiagramCache).isNotEmpty();
     }
 }
