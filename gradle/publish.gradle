@@ -1,4 +1,4 @@
-apply plugin: 'de.marcphilipp.nexus-publish'
+apply plugin: 'maven-publish'
 
 publishing {
     publications.create(project.ext.publicationName, MavenPublication) {
@@ -83,11 +83,5 @@ publishing {
             def snapshotsRepoUrl = "${rootProject.buildDir}/repos/snapshots"
             url = version.endsWith("SNAPSHOT") ? snapshotsRepoUrl : releasesRepoUrl
         }
-    }
-}
-
-nexusPublishing {
-    repositories {
-        sonatype()
     }
 }
