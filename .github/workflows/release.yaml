@@ -1,6 +1,23 @@
 name: Release
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      publishAsciidoctorJDiagram:
+        description: "Publish asciidoctorj-diagram"
+        type: boolean
+        default: true
+        required: true
+      publishAsciidoctorJDiagramDitaaMini:
+        description: "Publish asciidoctorj-diagram-ditaamini"
+        type: boolean
+        default: true
+        required: true
+      publishAsciidoctorJDiagramPlantuml:
+        description: "Publish asciidoctorj-diagram-plantuml"
+        type: boolean
+        default: true
+        required: true
 
 env:
   ORG_GRADLE_PROJECT_signingKeyId: ${{ secrets.GPG_KEY_ID }}
@@ -20,7 +37,12 @@ jobs:
           distribution: 'temurin'
           java-version: '11'
       - name: Build
+        shell: bash
         run: |
+          if ${{ inputs.publishAsciidoctorJDiagram }}; then GOALS="publishMavenAsciidoctorJDiagramPublicationToSonatypeRepository "; fi
+          if ${{ inputs.publishAsciidoctorJDiagramDitaaMini }}; then GOALS="$GOALS publishMavenAsciidoctorJDiagramDitaaminiPublicationToSonatypeRepository "; fi
+          if ${{ inputs.publishAsciidoctorJDiagramPlantuml }}; then GOALS="$GOALS publishMavenAsciidoctorJDiagramPlantumlPublicationToSonatypeRepository "; fi
+          echo "Publishing goals: ${GOALS}"
           unset GEM_PATH GEM_HOME JRUBY_OPTS
           ./gradlew --no-daemon clean build
-          ./gradlew --no-daemon publishToSonatype closeSonatypeStagingRepository
+          ./gradlew --no-daemon $GOALS closeSonatypeStagingRepository
