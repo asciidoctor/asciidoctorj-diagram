@@ -58,19 +58,6 @@ subprojects {
   // Must redefine here to work around a bug in the Eclipse plugin
   sourceCompatibility = targetCompatibility = JavaVersion.VERSION_11
 
-  plugins.withType(JavaPlugin).configureEach {
-    project.tasks.withType(JavaCompile).configureEach { task ->
-      task.options.release = 11
-    }
-    project.tasks.withType(GroovyCompile).tap {
-      configureEach { task ->
-        if (JavaVersion.current().isJava11Compatible()) {
-          task.options.release = 11
-        }
-      }
-    }
-  }
-
   repositories {
     if (project.hasProperty('useMavenLocal') && project.useMavenLocal.toBoolean()) {
       mavenLocal()
