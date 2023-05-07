@@ -34,7 +34,7 @@ ext {
   jrubyVersion = '9.2.4.0'
   junitVersion = '5.8.2'
   assertjVersion = '3.22.0'
-  jsoupVersion = '1.14.3'
+  jsoupVersion = '1.15.3'
 
   // gem versions
   asciidoctorJVersion = project.hasProperty('asciidoctorJVersion') ? project.asciidoctorJVersion : '2.5.3'
@@ -56,17 +56,17 @@ subprojects {
 
   // NOTE sourceCompatibility & targetCompatibility are set in gradle.properties to meet requirements of Gradle
   // Must redefine here to work around a bug in the Eclipse plugin
-  sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+  sourceCompatibility = targetCompatibility = JavaVersion.VERSION_11
 
-  plugins.withType(JavaPlugin) {
-    project.tasks.withType(JavaCompile) { task ->
-      if (JavaVersion.current().isJava11Compatible()) {
-        task.options.release = 8
-      }
+  plugins.withType(JavaPlugin).configureEach {
+    project.tasks.withType(JavaCompile).configureEach { task ->
+      task.options.release = 11
     }
-    project.tasks.withType(GroovyCompile) { task ->
-      if (JavaVersion.current().isJava11Compatible()) {
-        task.options.release = 8
+    project.tasks.withType(GroovyCompile).tap {
+      configureEach { task ->
+        if (JavaVersion.current().isJava11Compatible()) {
+          task.options.release = 11
+        }
       }
     }
   }
