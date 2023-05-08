@@ -54,9 +54,12 @@ subprojects {
 
   status = _status
 
-  // NOTE sourceCompatibility & targetCompatibility are set in gradle.properties to meet requirements of Gradle
-  // Must redefine here to work around a bug in the Eclipse plugin
-  sourceCompatibility = targetCompatibility = JavaVersion.VERSION_11
+  project.tasks.withType(JavaCompile).configureEach { task ->
+    task.options.release = 11
+  }
+  project.tasks.withType(GroovyCompile).configureEach {task ->
+    task.options.release = 11
+  }
 
   repositories {
     if (project.hasProperty('useMavenLocal') && project.useMavenLocal.toBoolean()) {
