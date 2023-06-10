@@ -1,0 +1,8 @@
+= Document Title
+
+Scan this with your phone:
+
+[qrcode,testqrcode]
+----
+https://my-link.tld/something
+----

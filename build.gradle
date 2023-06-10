@@ -31,14 +31,16 @@ ext {
   statusIsRelease = (status == 'release')
 
   // jar versions
-  jrubyVersion = '9.2.4.0'
+  jrubyVersion = '9.4.2.0'
   junitVersion = '5.8.2'
   assertjVersion = '3.22.0'
   jsoupVersion = '1.15.3'
 
   // gem versions
-  asciidoctorJVersion = project.hasProperty('asciidoctorJVersion') ? project.asciidoctorJVersion : '2.5.3'
+  asciidoctorJVersion = project.hasProperty('asciidoctorJVersion') ? project.asciidoctorJVersion : '2.5.10'
   asciidoctorDiagramGemVersion = project.hasProperty('asciidoctorDiagramGemVersion') ? project.asciidoctorDiagramGemVersion : project(':asciidoctorj-diagram').version.replace('-', '.')
+  barbyGemVersion = "0.6.8"
+  rqrcodeGemVersion = "2.2.0"
 }
 
 allprojects {
@@ -142,7 +144,7 @@ configure(subprojects.findAll { it.name != 'itest'}) {
   }
 
   jruby {
-    jrubyVersion = jrubyVersion
+    jrubyVersion = rootProject.jrubyVersion
   }
 
   ext {
