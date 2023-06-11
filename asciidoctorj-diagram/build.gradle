@@ -2,9 +2,12 @@ dependencies {
 
   testImplementation "org.jsoup:jsoup:$jsoupVersion"
   testImplementation "org.asciidoctor:asciidoctorj:$asciidoctorJVersion"
+  testImplementation "org.jruby:jruby-complete:$jrubyVersion"
 
   implementation project(':asciidoctorj-diagram-plantuml')
   implementation project(':asciidoctorj-diagram-ditaamini')
+  gems("rubygems:barby:$barbyGemVersion")
+  gems("rubygems:rqrcode:$rqrcodeGemVersion")
   gems("rubygems:asciidoctor-diagram:$asciidoctorDiagramGemVersion") {
     // Exclude gems provided by AsciidoctorJ core
     exclude module: 'asciidoctor'
