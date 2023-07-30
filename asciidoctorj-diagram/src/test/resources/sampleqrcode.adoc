@@ -2,7 +2,7 @@
 
 Scan this with your phone:
 
-[qrcode,testqrcode]
+[qrcode,testqrcode,png]
 ----
 https://my-link.tld/something
 ----
