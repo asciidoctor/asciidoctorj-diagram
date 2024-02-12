@@ -57,10 +57,10 @@ subprojects {
   status = _status
 
   project.tasks.withType(JavaCompile).configureEach { task ->
-    task.options.release = 11
+    task.options.release = 8
   }
   project.tasks.withType(GroovyCompile).configureEach {task ->
-    task.options.release = 11
+    task.options.release = 8
   }
 
   repositories {
