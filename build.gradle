@@ -31,16 +31,18 @@ ext {
   statusIsRelease = (status == 'release')
 
   // jar versions
-  jrubyVersion = '9.4.2.0'
+  jrubyVersion = '9.4.7.0'
   junitVersion = '5.8.2'
   assertjVersion = '3.22.0'
-  jsoupVersion = '1.15.3'
+  jsoupVersion = '1.17.2'
 
   // gem versions
   asciidoctorJVersion = project.hasProperty('asciidoctorJVersion') ? project.asciidoctorJVersion : '2.5.10'
   asciidoctorDiagramGemVersion = project.hasProperty('asciidoctorDiagramGemVersion') ? project.asciidoctorDiagramGemVersion : project(':asciidoctorj-diagram').version.replace('-', '.')
-  barbyGemVersion = "0.6.8"
+  asciidoctorDiagramBatikGemVersion = "1.17"
+  barbyGemVersion = "0.6.9"
   rqrcodeGemVersion = "2.2.0"
+  rexmlGemVersion = '3.2.6'
 }
 
 allprojects {

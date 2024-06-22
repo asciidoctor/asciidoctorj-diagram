@@ -1,5 +1,9 @@
 dependencies {
-  gems("rubygems:asciidoctor-diagram-plantuml:${project.version}")
+  gems("rubygems:asciidoctor-diagram-plantuml:${project.version}") {
+    // Version resolution does not seem to work correctly for this one, therefore requiring it explicitly
+    exclude module: "asciidoctor-diagram-batik"
+  }
+  gems("rubygems:asciidoctor-diagram-batik:${asciidoctorDiagramBatikGemVersion}")
 }
 
 def gemFiles = fileTree("${project.buildDir}/.gems") {
