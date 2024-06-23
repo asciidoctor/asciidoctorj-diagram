@@ -12,9 +12,11 @@ dependencies {
     // Exclude gems provided by AsciidoctorJ core
     exclude module: 'asciidoctor'
     exclude module: 'thread_safe'
+    exclude module: 'rexml'
     exclude module: 'asciidoctor-diagram-plantuml'
     exclude module: 'asciidoctor-diagram-ditaamini'
   }
+  gems("rubygems:rexml:$rexmlGemVersion")
 }
 
 def gemFiles = fileTree("${project.buildDir}/.gems") {

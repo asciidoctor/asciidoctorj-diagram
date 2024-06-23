@@ -1,8 +1,5 @@
 dependencies {
-  gems("rubygems:asciidoctor-diagram-plantuml:${project.version}") {
-    exclude module: "asciidoctor-diagram-batik"
-  }
-  implementation project(':asciidoctorj-diagram-batik')
+  gems("rubygems:asciidoctor-diagram-batik:${project.version}")
 }
 
 def gemFiles = fileTree("${project.buildDir}/.gems") {
@@ -20,7 +17,7 @@ jrubyPrepare {
   }
 }
 
-ext.publicationName = "mavenAsciidoctorJDiagramPlantuml"
+ext.publicationName = "mavenAsciidoctorJDiagramBatik"
 
 apply from: rootProject.file('gradle/publish.gradle')
 apply from: rootProject.file('gradle/signing.gradle')

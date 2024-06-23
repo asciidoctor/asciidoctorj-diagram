@@ -18,6 +18,16 @@ on:
         type: boolean
         default: true
         required: true
+      publishAsciidoctorJDiagramBatik:
+        description: "Publish asciidoctorj-diagram-batik"
+        type: boolean
+        default: true
+        required: true
+      publishAsciidoctorJDiagramJSyntrax:
+        description: "Publish asciidoctorj-diagram-jsyntrax"
+        type: boolean
+        default: true
+        required: true
 
 env:
   ORG_GRADLE_PROJECT_signingKeyId: ${{ secrets.GPG_KEY_ID }}
@@ -42,6 +52,8 @@ jobs:
           if ${{ inputs.publishAsciidoctorJDiagram }}; then GOALS="publishMavenAsciidoctorJDiagramPublicationToSonatypeRepository "; fi
           if ${{ inputs.publishAsciidoctorJDiagramDitaaMini }}; then GOALS="$GOALS publishMavenAsciidoctorJDiagramDitaaminiPublicationToSonatypeRepository "; fi
           if ${{ inputs.publishAsciidoctorJDiagramPlantuml }}; then GOALS="$GOALS publishMavenAsciidoctorJDiagramPlantumlPublicationToSonatypeRepository "; fi
+          if ${{ inputs.publishAsciidoctorJDiagramBatik }}; then GOALS="$GOALS publishMavenAsciidoctorJDiagramBatikPublicationToSonatypeRepository "; fi
+          if ${{ inputs.publishAsciidoctorJDiagramJSyntrax }}; then GOALS="$GOALS publishMavenAsciidoctorJDiagramJSyntraxPublicationToSonatypeRepository "; fi
           echo "Publishing goals: ${GOALS}"
           unset GEM_PATH GEM_HOME JRUBY_OPTS
           ./gradlew --no-daemon clean build

@@ -4,6 +4,8 @@ include \
   'asciidoctorj-diagram',
   'asciidoctorj-diagram-plantuml',
   'asciidoctorj-diagram-ditaamini',
+  'asciidoctorj-diagram-batik',
+  'asciidoctorj-diagram-jsyntrax',
   'itest'
 
 
