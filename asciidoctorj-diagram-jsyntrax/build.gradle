@@ -20,7 +20,7 @@ jrubyPrepare {
   }
 }
 
-ext.publicationName = "mavenAsciidoctorJDiagramPlantuml"
+ext.publicationName = "mavenAsciidoctorJDiagramJSyntrax"
 
 apply from: rootProject.file('gradle/publish.gradle')
 apply from: rootProject.file('gradle/signing.gradle')
