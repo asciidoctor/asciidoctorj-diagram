@@ -58,11 +58,16 @@ subprojects {
 
   status = _status
 
+  def _javaVersion = 8
+  if (project.name == "itest"
+          || project.name == "asciidoctorj-diagram-jsyntrax") {
+    _javaVersion = 11
+  }
   project.tasks.withType(JavaCompile).configureEach { task ->
-    task.options.release = 8
+    task.options.release = _javaVersion
   }
   project.tasks.withType(GroovyCompile).configureEach {task ->
-    task.options.release = 8
+    task.options.release = _javaVersion
   }
 
   repositories {

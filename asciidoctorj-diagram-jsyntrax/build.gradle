@@ -1,5 +1,5 @@
 dependencies {
-  gems("rubygems:asciidoctor-diagram-plantuml:${project.version}") {
+  gems("rubygems:asciidoctor-diagram-jsyntrax:${project.version}") {
     exclude module: "asciidoctor-diagram-batik"
   }
   implementation project(':asciidoctorj-diagram-batik')

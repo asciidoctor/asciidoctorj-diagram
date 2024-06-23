@@ -3,10 +3,11 @@ dependencies {
     testImplementation ("org.asciidoctor:asciidoctorj:$asciidoctorJVersion")
 
     testImplementation project(':asciidoctorj-diagram')
+    testImplementation project(':asciidoctorj-diagram-jsyntrax')
 }
 
 jar.enabled = false
 
-configurations.all {
+configurations.configureEach {
     artifacts.clear()
 }
