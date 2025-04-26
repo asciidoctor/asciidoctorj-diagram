@@ -1,5 +1,10 @@
 dependencies {
   gems("rubygems:asciidoctor-diagram-ditaamini:${project.version}")
+
+  testImplementation "org.jsoup:jsoup:$jsoupVersion"
+  testImplementation "org.asciidoctor:asciidoctorj:$asciidoctorJVersion"
+  testImplementation "org.jruby:jruby-complete:$jrubyVersion"
+  testImplementation project(":asciidoctorj-diagram")
 }
 
 def gemFiles = fileTree("${project.buildDir}/.gems") {

@@ -4,8 +4,6 @@ dependencies {
   testImplementation "org.asciidoctor:asciidoctorj:$asciidoctorJVersion"
   testImplementation "org.jruby:jruby-complete:$jrubyVersion"
 
-  implementation project(':asciidoctorj-diagram-plantuml')
-  implementation project(':asciidoctorj-diagram-ditaamini')
   gems("rubygems:barby:$barbyGemVersion")
   gems("rubygems:rqrcode:$rqrcodeGemVersion")
   gems("rubygems:asciidoctor-diagram:$asciidoctorDiagramGemVersion") {
@@ -13,8 +11,6 @@ dependencies {
     exclude module: 'asciidoctor'
     exclude module: 'thread_safe'
     exclude module: 'rexml'
-    exclude module: 'asciidoctor-diagram-plantuml'
-    exclude module: 'asciidoctor-diagram-ditaamini'
   }
   gems("rubygems:rexml:$rexmlGemVersion")
 }

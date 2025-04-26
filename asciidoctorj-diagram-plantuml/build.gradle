@@ -3,6 +3,11 @@ dependencies {
     exclude module: "asciidoctor-diagram-batik"
   }
   implementation project(':asciidoctorj-diagram-batik')
+
+  testImplementation "org.jsoup:jsoup:$jsoupVersion"
+  testImplementation "org.asciidoctor:asciidoctorj:$asciidoctorJVersion"
+  testImplementation "org.jruby:jruby-complete:$jrubyVersion"
+  testImplementation project(":asciidoctorj-diagram")
 }
 
 def gemFiles = fileTree("${project.buildDir}/.gems") {
