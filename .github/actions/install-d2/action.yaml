@@ -52,7 +52,7 @@ runs:
         set -e
         gh release download ${{ inputs.version }} --repo terrastruct/d2 --pattern d2-${{ inputs.version }}-macos-amd64.tar.gz
         cat > sha.txt <<EOM
-        a83d1eea75c89860cbbe4fe5b970cd1c1b3130d5a5dce9383bbc038065252f1a  d2-${{ inputs.version }}-macos-amd64.tar.gz
+        7d8b3b5900d5609882d1a98fbb5c5a349332a706e0ef063b6db4aebdef09d274  d2-${{ inputs.version }}-macos-amd64.tar.gz
         EOM
         shasum -a 256 -c sha.txt
         tar xvf d2-${{ inputs.version }}-macos-amd64.tar.gz
