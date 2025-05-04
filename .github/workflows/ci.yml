@@ -52,16 +52,18 @@ jobs:
       - name: Install d2
         env:
           GH_TOKEN: ${{ github.token }}
+        shell: pwsh
         run: |
           # The script should fail if sha256sum --check fails
-          set -e
+          $ErrorActionPreference = 'Stop'
           gh release download v0.7.0 --repo terrastruct/d2 --pattern d2-v0.7.0-windows-amd64.tar.gz
-          cat > sha.txt <<EOM
-          4aded6f6b1576ab77eb9ff6051254bec42620dd4a5af57fb02e7619f06660ff6  d2-v0.7.0-windows-amd64.tar.gz
-          EOM
-          sha256sum --check sha.txt
+          $expectedHash = "4aded6f6b1576ab77eb9ff6051254bec42620dd4a5af57fb02e7619f06660ff6"
+          $actualHash = (Get-FileHash -Algorithm SHA256 "d2-v0.7.0-windows-amd64.tar.gz").Hash.ToLower()
+          if ($actualHash -ne $expectedHash) {
+            throw "SHA256 verification failed!"
+          }
           tar xvf d2-v0.7.0-windows-amd64.tar.gz
-          cp d2-v0.7.0/bin/d2 /usr/local/bin
+          Copy-Item "d2-v0.7.0/bin/d2.exe" -Destination "C:/Windows/System32/"
       - name: Build
         run: |
           ./gradlew check
