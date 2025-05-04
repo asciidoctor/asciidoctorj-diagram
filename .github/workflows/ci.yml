@@ -26,6 +26,17 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: ${{ matrix.java }}
+      - name: Install d2
+        run: |
+          # The script should fail if sha256sum --check fails
+          set -e
+          gh release download v0.7.0 --repo terrastruct/d2 --pattern d2-v0.7.0-linux-amd64.tar.gz
+          cat > sha.txt <<EOM
+          6b990f7f65b9f3ea067b19289a75a3a3c44716fb028bb909fbb36036c7437bd9  d2-v0.7.0-linux-amd64.tar.gz
+          EOM
+          sha256sum --check sha.txt
+          tar xvf d2-v0.7.0-linux-amd64.tar.gz
+          cp d2-v0.7.0/bin/d2 /usr/local/bin
       - name: Build
         run: |
           ./gradlew check
