@@ -50,10 +50,10 @@ runs:
         GH_TOKEN: ${{ github.token }}
       run: |
         set -e
-        gh release download ${{ inputs.version }} --repo terrastruct/d2 --pattern d2-${{ inputs.version }}-macos-amd64.tar.gz
+        gh release download ${{ inputs.version }} --repo terrastruct/d2 --pattern d2-${{ inputs.version }}-macos-arm64.tar.gz
         cat > sha.txt <<EOM
-        7d8b3b5900d5609882d1a98fbb5c5a349332a706e0ef063b6db4aebdef09d274  d2-${{ inputs.version }}-macos-amd64.tar.gz
+        7d8b3b5900d5609882d1a98fbb5c5a349332a706e0ef063b6db4aebdef09d274  d2-${{ inputs.version }}-macos-arm64.tar.gz
         EOM
         shasum -a 256 -c sha.txt
-        tar xvf d2-${{ inputs.version }}-macos-amd64.tar.gz
+        tar xvf d2-${{ inputs.version }}-macos-arm64.tar.gz
         sudo cp d2-${{ inputs.version }}/bin/d2 /usr/local/bin
