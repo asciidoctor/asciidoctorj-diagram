@@ -47,7 +47,7 @@ jobs:
           distribution: 'temurin'
           java-version: '11'
       - name: Install d2
-        uses: ./.github/actions/install-d2.yaml
+        uses: ./.github/actions/install-d2
       - name: Build
         shell: bash
         run: |
