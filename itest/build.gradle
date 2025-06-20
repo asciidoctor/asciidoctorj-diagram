@@ -3,6 +3,8 @@ dependencies {
     testImplementation ("org.asciidoctor:asciidoctorj:$asciidoctorJVersion")
 
     testImplementation project(':asciidoctorj-diagram')
+    testImplementation project(':asciidoctorj-diagram-plantuml')
+    testImplementation project(':asciidoctorj-diagram-ditaamini')
     testImplementation project(':asciidoctorj-diagram-jsyntrax')
 }
 

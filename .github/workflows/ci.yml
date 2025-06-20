@@ -26,6 +26,8 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: ${{ matrix.java }}
+      - name: Install d2
+        uses: ./.github/actions/install-d2
       - name: Build
         run: |
           ./gradlew check
