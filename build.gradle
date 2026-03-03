@@ -45,7 +45,7 @@ ext {
   // gem versions
   asciidoctorJVersion = project.hasProperty('asciidoctorJVersion') ? project.asciidoctorJVersion : '2.5.13'
   asciidoctorDiagramGemVersion = project.hasProperty('asciidoctorDiagramGemVersion') ? project.asciidoctorDiagramGemVersion : project(':asciidoctorj-diagram').version.replace('-', '.')
-  asciidoctorDiagramBatikGemVersion = "1.17"
+  asciidoctorDiagramBatikGemVersion = "1.19"
   barbyGemVersion = "0.6.9"
   rqrcodeGemVersion = "2.2.0"
   rexmlGemVersion = '3.2.6'
